@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9th Monthsary Presentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #FFD1DC, #FFECBA);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .slide-container {
+      width: 80%;
+      max-width: 800px;
+      height: 80%;
+      position: relative;
+    }
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transform: scale(0);
+      transition: all 0.6s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide.active {
+      transform: scale(1);
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 60px;
+      color: #FF6F91;
+      margin-bottom: 15px;
+    }
+    h2 {
+      font-size: 40px;
+      color: #FF6F91;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 20px;
+      color: #333;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .memory-name {
+      font-weight: bold;
+      color: #FF385C;
+      margin-bottom: 10px;
+    }
+    .next-btn {
+      padding: 10px 30px;
+      font-size: 22px;
+      background-color: #FF6F91;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .next-btn:hover {
+      background-color: #FF385C;
+    }
+    img {
+      max-width: 80%;
+      max-height: 300px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      transform: rotate(-45deg);
+      animation: floatHeart 4s infinite;
+      opacity: 0.7;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -15px; left: 0; }
+    .heart::after { left: 15px; top: 0; }
+    @keyframes floatHeart {
+      0% { transform: translate(0,0) scale(0.5) rotate(-45deg); opacity:0.7;}
+      50% { transform: translate(0,-150px) scale(1) rotate(-45deg); opacity:1;}
+      100% { transform: translate(0,-300px) scale(0.5) rotate(-45deg); opacity:0;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide-container">
+
+  <div class="slide active">
+    <h1>Happy 9th Monthsary! 💖</h1>
+    <p>To my love, thank you for making life beautiful. Every moment with you is a treasure.</p>
+    <button class="next-btn">Next</button>
+  </div>
+
+  <div class="slide">
+    <h2>Our Journey Together</h2>
+    <div class="memory-name">Our First Photo ❤️</div>
+    <img src="https://via.placeholder.com/400x250.png?text=Our+First+Photo" alt="Our first photo">
+    <p>Remember when we first met? I knew from that moment you were special.</p>
+    <button class="next-btn">Next</button>
+  </div>
+
+  <div class="slide">
+    <h2>Sweet Memories</h2>
+    <div class="memory-name">Beach Trip 🌊</div>
+    <img src="https://via.placeholder.com/400x250.png?text=Beach+Trip" alt="Beach trip">
+    <p>That day at the beach will always be in my heart. So much laughter and fun!</p>
+    <button class="next-btn">Next</button>
+  </div>
+
+  <div class="slide">
+    <h2>Love Notes</h2>
+    <div class="memory-name">Candlelight Dinner 🕯️</div>
+    <img src="https://via.placeholder.com/400x250.png?text=Candlelight+Dinner" alt="Candlelight dinner">
+    <p>"You are my sunshine, my heart, and my home. Every day I spend with you feels magical." 💕</p>
+    <button class="next-btn">Next</button>
+  </div>
+
+  <div class="slide">
+    <h2>Looking Forward</h2>
+    <div class="memory-name">Future Adventures 🌟</div>
+    <img src="https://via.placeholder.com/400x250.png?text=Future+Adventures" alt="Future adventures">
+    <p>Let's keep dreaming, laughing, and loving. Cheers to more months of happiness, adventures, and endless love! 🥂</p>
+    <button class="next-btn">Finish</button>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const nextButtons = document.querySelectorAll('.next-btn');
+  let current = 0;
+
+  nextButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      slides[current].classList.remove('active');
+      current++;
+      if(current >= slides.length) {
+        current = 0; // Restart from beginning
+      }
+      slides[current].classList.add('active');
+    });
+  });
+
+  // Floating hearts effect
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+  setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
